@@ -1,0 +1,74 @@
+{% extends 'base2.html' %}
+{% load bootstrap4 %}
+{% block body %}
+  
+
+	 <section>
+			<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-in-form">
+						<div class="sign-in-form-top">
+							<center>
+								<h1>LOGIN</h1>
+							</center>
+						</div>
+						<div class="signin">
+							<div class="signin-rit">
+								<span class="checkbox1">
+									 <label class="checkbox"><input type="checkbox" name="checkbox" checked="">Forgot Password ?</label>
+								</span>
+								<p><a href="{% url 'password_reset' %}">Click Here</a> </p>
+								<div class="clearfix"> </div>
+							</div>
+
+                        
+
+                   
+                          
+							<form class="form-horizontal" class="form"  method="POST">
+								{% csrf_token %}
+<div class="form-group" style="margin-left: 90px;">
+
+<table>
+  <tr><td>
+  <input type="text" class="form-control" name="username" placeholder="Enter Your UserName" style="width: 300px;"></td></tr>
+  <tr><td><br></td></tr>
+  <tr><td>    
+  <input type="password" class="form-control" name="password" placeholder="Enter Your password">
+  </td></tr>
+</table>
+</div>
+
+<br>
+<div class="form-group">
+<div class="col-sm-offset-2 col-sm-10">
+ 
+  <button type="submit" class="btn btn-success" style="width: 100px;margin-left: 100px;">Login</button>
+</div>
+</div>
+							
+</form>
+{% for i in messages %}
+<div class="alert alert-danger" role="alert">
+{{i}}
+</div>
+{% endfor %}
+                        
+
+						</div>
+						<div class="new_people">
+							<h2>For New People</h2>
+							<p>
+								<p></p>
+							</p>
+							<a href="{% url 'accounts:register' %}">Register Now!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!--footer section start-->
+			
+        <!--footer section end-->
+	</section>
+
+    {% endblock body %}

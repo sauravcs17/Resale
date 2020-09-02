@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+	<!-- Submit Ad -->
+		<div class="container">
+			<h2 class="head"><center>Post Your Product Video</center></h2>
+			
+					 <form method="post" class="form" enctype="multipart/form-data">
+						<table>
+                            {% csrf_token %}
+                           <tr> {% bootstrap_form image_form %}</tr>
+						</table>
+						<br>
+						
+						
+						<center>
+						<input type="submit" value="POST" class="btn btn-success">
+						</div>
+						</center>
+					
+						
+	
+					</form>
+
+			</div>
+		
+
+	<!-- // Submit Ad -->
+	<!--footer section start-->		
+	{% endblock body %}

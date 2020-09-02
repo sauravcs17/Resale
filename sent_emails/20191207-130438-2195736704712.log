@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: 
+From: webmaster@localhost
+To: sauravsurendran8818@gmail.com
+Date: Sat, 07 Dec 2019 07:34:38 -0000
+Message-ID: <157570407841.3540.2462167280529248530@LAPTOP-NGLJP5H5>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Someone asked for password reset for email sauravsurendran8818@gmail.com. Follow the link below:
+http://127.0.0.1:8000/accounts/reset/MQ/5c2-7d5e49ee6602e8e6942b/
+
+</body>
+</html>
+-------------------------------------------------------------------------------

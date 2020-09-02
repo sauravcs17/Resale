@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+  
+
+	 <section>
+			<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-in-form">
+						<div class="sign-in-form-top">
+							<center>
+                            <h1>EDIT PROFILE</h1>
+                        </center>
+						</div>
+						<div class="signin">
+
+
+                    
+                   
+							<form class="form-horizontal" method="POST" class="form" autocomplete="off">
+								{% csrf_token %}
+							  
+				  <div class="form-group" style="margin-left: 90px;">
+				<table>
+					
+				<tr>
+					
+					  <td>FirstName :<input type="text" value="{{user.first_name}}" class="form-control" name="first_name" placeholder="FirstName" required autocomplete="off" style="width: 300px;"></td></tr>
+				
+				<tr><td><br></td></tr>
+				  
+				
+				   <tr>
+					
+					  <td>LastName :<input type="text" class="form-control" name="last_name" value="{{user.last_name}}"  autocomplete="off" required placeholder="LastName"></td></tr>
+					  <tr><td><br></td></tr>
+					 
+				<tr>
+					   
+					  <td> UserName :<input type="text" class="form-control" name="username" value="{{user.username}}" autocomplete="off" required placeholder="UserName"></td></tr>
+					  <tr><td><br></td></tr>
+					  
+					   <tr>
+					  <td>Email :<input type="text" class="form-control" name="email"  value="{{user.email}}" autocomplete="off" required placeholder="Email"></td></tr>
+					  <tr><td><br></td></tr>
+					  
+					  <tr>
+					  <td>Contact :<input type="text" class="form-control" name="phone"  value="{{data.phone}}" autocomplete="off" required placeholder="Contact Number"></td></tr>
+					  <tr><td><br></td></tr>
+				   
+				
+		
+						
+					
+				</table>
+				</div>
+				
+				  <div class="form-group">
+					
+					  <button type="submit" class="btn btn-success" style="margin-left: 300px;"><b>Save</b></button>
+				  
+					
+				  </div>
+				</form>
+
+                {% for i in messages %}
+                <div class="alert alert-danger" role="alert">
+                {{i}}
+                </div>
+                {% endfor %}
+                    
+
+						</div>
+						<div class="new_people">
+						
+							<p></p>
+							<a href="{% url 'login' %}">Login Now!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!--footer section start-->
+			
+        <!--footer section end-->
+	</section>
+
+    {% endblock body %}

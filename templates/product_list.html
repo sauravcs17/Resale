@@ -1,0 +1,158 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% extends 'base.html' %}
+{% block body %}
+
+	<!-- Products -->
+	<div class="total-ads main-grid-border">
+		<div class="container">
+			
+				<div class="clearfix"></div>
+			</div>
+			<div class="all-categories">
+				<h3> Select your category and find the perfect ad</h3>
+
+				<ul class="all-cat-list">
+                {% for category in category_list %}
+					<li><a href="{% url 'products:product_list_category' category.slug %}"><b>{{ category }}</b> <span class="num-of-ads">({{ category.total_products }})</span></a></li>
+				 {% endfor %}
+                </ul>
+
+			</div>
+			<ol class="breadcrumb" style="margin-bottom: 5px;">
+			  <li><a href="/">Home</a></li>
+                <li class="active"><a href="{% url 'products:product_list' %}">All Ads</a></li>
+                {% if category %}
+                  <li class="active">{{ category }}</li>
+			</ol>
+        {% endif %}
+			<div class="ads-grid">
+				<div class="side-bar col-md-3">
+					<div class="search-hotel">
+					<h3 class="sear-head">Search Product</h3>
+					<form method="GET" action="{% url 'products:product_list' %}">
+						<span><input type="text" placeholder="Enter Product Name"  name="q">
+						<input type="submit" value=" "></span>
+					</form>
+				</div>
+
+
+
+
+				<div class="featured-ads">
+					<h2 class="sear-head fer"></h2>
+					<div class="featured-ad">
+						<a href="single.html">
+							<div class="featured-ad-left">
+								<img src="images/f1.jpg" title="ad image" alt="" />
+							</div>
+							<div class="featured-ad-right">
+								<h4></h4>
+								<p></p>
+							</div>
+							<div class="clearfix"></div>
+						</a>
+					</div>
+					<div class="featured-ad">
+						<a href="single.html">
+							<div class="featured-ad-left">
+								<img src="images/f2.jpg" title="ad image" alt="" />
+							</div>
+							<div class="featured-ad-right">
+								<h4></h4>
+								<p></p>
+							</div>
+							<div class="clearfix"></div>
+						</a>
+					</div>
+					<div class="featured-ad">
+						<a href="single.html">
+							<div class="featured-ad-left">
+								<img src="images/f3.jpg" title="ad image" alt="" />
+							</div>
+							<div class="featured-ad-right">
+								<h4></h4>
+								<p></p>
+							</div>
+							<div class="clearfix"></div>
+						</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				</div>
+				<div class="ads-display col-md-9">
+					<div class="wrapper">					
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+					  <div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						   <div>
+												<div id="container">
+
+								<div class="clearfix"></div>
+							<ul class="list">
+{% if user.is_authenticated %}
+                   {% for product in product_list %}
+								<a href="{% url 'products:product_details' product.slug %}">
+									<li>
+									<img src="{{ product.image.url }}" title="" alt="" />
+									<section class="list-left">
+									<h5 class="title">{{ product.name }}</h5>
+									<span class="adprice">₹{{ product.price|floatformat:0}}</span>
+									<p class="catpath">Brand : {{ product.brand }}</p>
+									</section>
+									<section class="list-right">
+									<span class="date">Posted on : {{ product.created }}</span>
+									<span class="cityname"> Location : {{ product.location }}</span>
+									</section>
+									<div class="clearfix"></div>
+									</li> 
+								</a>
+						 {% endfor %}
+
+						 {% else %}
+						 <h3 style="font-size:30px;color:red;margin-left:300px"><b>Please Sign in to View Products..</b></h3>
+						 {% endif %}
+
+							</ul>
+						</div>
+							</div>
+						</div>
+
+                {%  if product_list.has_other_pages %}
+						<ul class="pagination pagination-sm">
+                        {% if product_list.has_previous %}
+						     	<li><a href="?page={{ product_list.previous_page_number }}">Prev</a></li>
+                            {% else %}
+                                  <li class="disabled"></li>
+                            {% endif %}
+                        {% for pages in product_list.paginator.page_range %}
+                            {% if product_list.number == pages %}
+							       <li><a href="#">{{ pages }}</a></li>
+                            {% else %}
+                                  <li><a href="?page={{pages}}">{{ pages }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if product_list.has_next %}
+						    	<li><a href="?page={{ product_list.next_page_number }}">Next</a></li>
+                            {% else %}
+                                 <li class="disabled"></li>
+                            {% endif %}
+
+						</ul>
+                      {% endif %}
+					  </div>
+					</div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>	
+	</div>
+	<!-- // Products -->
+
+{% endblock body %}

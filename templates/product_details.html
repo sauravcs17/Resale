@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+    {% block body %}
+	<!--single-page-->
+	<div class="single-page main-grid-border">
+		<div class="container">
+			<ol class="breadcrumb" style="margin-bottom: 5px;">
+				<li><a href="/">Home</a></li>
+				<li><a href="{% url 'products:product_list' %}">All Ads</a></li>
+				<!--<li class="active"><a href="mobiles.html">Mobiles</a></li>-->
+				<li class="active">Mobile Phone</li>
+			</ol>
+			<div class="product-desc">
+				<div class="col-md-7 product-view">
+					<h2>{{ product_detail.name }}</h2>
+					<p> <i class="glyphicon glyphicon-map-marker"></i><a href="">state</a>, <a href="#">city</a>| Added at {{ product_detail.created }}, Ad ID: 987654321</p>
+					<div class="flexslider">
+						<ul class="slides">
+	
+                            {%  for video in product_images %}
+							<li data-thumb="{{video.FILE.url}}">
+								
+								<img src="{{ video.FILE.url }}" width="320" height="240"alt="RESALE" />
+						
+								<video src="{{ video.FILE.url }}" controls ></video>
+							
+								
+								
+							</li>
+
+
+							{% endfor %}
+
+							
+						</ul>
+					</div>
+					<!-- FlexSlider -->
+					  <script defer src="{% static 'js/jquery.flexslider.js' %}"></script>
+					<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
+
+						<script>
+					// Can also be used with $(document).ready()
+					$(window).load(function() {
+					  $('.flexslider').flexslider({
+						animation: "slide",
+						controlNav: "thumbnails"
+					  });
+					});
+					</script>
+					<!-- //FlexSlider -->
+					<div class="product-details">
+						<h4>Brand : <a href="#">{{ product_detail.brand }}</a></h4>
+					
+						<p><strong>Summary</strong> : {{ product_detail.description }}</p>
+						<p>
+							{% ifequal product_detail.owner request.user %}
+							<a href="{% url 'products:delete' product_detail.slug %}">
+								<input type="button" class="btn btn-danger" style="margin-left:200px;" value="DELETE PRODUCT "/>
+							</a>
+							{% else %}
+							<p></p>
+		{% endifequal %}
+					</div>
+					
+				</div>
+				<div class="col-md-5 product-details-grid">
+					<div class="item-price">
+						<div class="product-price">
+							<p class="p-price">Price</p>
+							<h3 class="rate">₹{{ product_detail.price|floatformat:0 }}</h3>
+							<div class="clearfix"></div>
+						</div>
+						<div class="condition">
+							<p class="p-price">Condition</p>
+							<h4>{{ product_detail.condition }}</h4>
+							<div class="clearfix"></div>
+						</div>
+						<div class="itemtype">
+							<p class="p-price">Item Type</p>
+							<h4>{{ product_detail.category }}</h4>
+							<div class="clearfix"></div>
+						</div>
+						
+					</div>
+				
+					<div class="interested text-center">
+
+						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
+						
+						<p>Seller Name : <b>{{ product_detail.owner }}</b></p>
+						<p>Location : <b>{{ product_detail.location }}</b></p>
+						<p>Contact Number : <b>+91{{ data.phone }}</b></p>
+						<p>Email : <b>{{ product_detail.owner.email }}</b></p>
+     
+
+
+
+
+					</div>
+
+               <div>
+				
+				{% ifequal product_detail.owner request.user %}
+				<div style="margin-left: 140px;">
+				<form method="post" class="form" enctype="multipart/form-data">
+					<table>
+						{% csrf_token %}
+					   <tr> {% bootstrap_form image_form %}</tr>
+					</table>
+					<br>
+					
+				</div>
+					<center>
+					<input type="submit" value="POST PRODUCT VIDEO" class="btn btn-success">
+					</div>
+					</center>
+					<p></p>
+					{% for i in messages %}
+					<div class="alert alert-danger" role="alert">
+					{{i}}
+					</div>
+					{% endfor %}
+					{% else %}
+					<button type="button" class="btn btn-danger" style="margin-left: 200px;">CONTACT THE SELLER</button>
+					{% endifequal %}
+					
+
+				</form>
+
+
+
+
+              </div>
+
+
+
+</div>
+
+				</div>
+			<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<!--//single-page-->
+	{% endblock body %}

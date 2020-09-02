@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block body %}
+	<!-- Submit Ad -->
+		<div class="container">
+			<h2 class="head"><center>Place your Bid</center></h2>
+			
+					 <form method="post" class="form" enctype="multipart/form-data">
+						<table>
+                            {% csrf_token %}
+                           <tr> {% bootstrap_form postauction_form %}</tr>
+						</table>
+						<br>
+						
+						<div class="clearfix"></div>
+						<p class="post-terms">By clicking <strong>post Button</strong> you accept our <a href="terms.html" target="_blank">Terms of Use </a> and <a href="privacy.html" target="_blank">Privacy Policy</a></p>
+						 <input type="submit" value="Place">
+	
+					</form>
+
+			</div>
+		
+
+	<!-- // Submit Ad -->
+	<!--footer section start-->		
+	{% endblock body %}

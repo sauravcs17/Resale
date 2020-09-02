@@ -1,0 +1,131 @@
+{% extends 'base1.html' %}
+{% block body %}
+
+	<!-- Products -->
+	<div class="total-ads main-grid-border">
+		<div class="container">
+			<div class="select-box">
+
+			
+				<div class="clearfix"></div>
+			</div>
+		
+			<ol class="breadcrumb" style="margin-bottom: 5px;">
+			  <li><a href="/">Home</a></li>
+                
+			</ol>
+   
+			<div class="ads-grid">
+				<div class="side-bar col-md-3">
+					<div class="search-hotel">
+					<h3 class="sear-head">Search Product</h3>
+					
+						<span><input type="text" placeholder="Enter Product Name"  name="q">
+						<input type="submit" value=" "></span>
+					</form>
+				</div>
+
+
+
+
+				<div class="featured-ads">
+					<h2 class="sear-head fer"></h2>
+					<div class="featured-ad">
+						<a href="single.html">
+							<div class="featured-ad-left">
+								<img src="images/f1.jpg" title="ad image" alt="" />
+							</div>
+							<div class="featured-ad-right">
+								<h4></h4>
+								<p></p>
+							</div>
+							<div class="clearfix"></div>
+						</a>
+					</div>
+					<div class="featured-ad">
+						<a href="single.html">
+							<div class="featured-ad-left">
+								<img src="images/f2.jpg" title="ad image" alt="" />
+							</div>
+							<div class="featured-ad-right">
+								<h4></h4>
+								<p></p>
+							</div>
+							<div class="clearfix"></div>
+						</a>
+					</div>
+					<div class="featured-ad">
+						<a href="single.html">
+							<div class="featured-ad-left">
+								<img src="images/f3.jpg" title="ad image" alt="" />
+							</div>
+							<div class="featured-ad-right">
+								<h4></h4>
+								<p></p>
+							</div>
+							<div class="clearfix"></div>
+						</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				</div>
+				<div class="ads-display col-md-9">
+					<div class="wrapper">					
+					<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+					  <div id="myTabContent" class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+						   <div>
+												<div id="container">
+
+								<div class="clearfix"></div>
+							<ul class="list">
+
+                   {% for product in productauction_list %}
+                                   <!--<img src="{{ product.image.url }}" title="" alt="" />
+									<section class="list-left">
+									<h5 class="title">{{ product.nameofproduct }}</h5>
+									<span class="adprice">₹{{ product.pricestartswith|floatformat:0}}</span>
+								
+									</section>
+									<section class="list-right">
+									<span class="date">Posted on : {{ product.created }}</span>
+                                    <span class="cityname"> Location : {{ product.location }}</span>
+                                    <span class="date">Posted on : {{ product.start_time }}</span>
+									<span class="cityname"> Location : {{ product.end_time }}</span> 
+									</section>-->
+							<a href="{% url 'productauction:product' product.slug %}">
+									<li>
+									<img src="{{ product.image.url }}" title="" alt="" />
+									<section class="list-left">
+									<h5 class="title">{{ product.nameofproduct }}</h5>
+									<span class="adprice">₹{{ product.pricestartswith|floatformat:0}}</span>
+								
+									</section>
+									<section class="list-center">
+									<span class="date">Posted on : {{ product.created }}</span>
+                                    <span class="cityname"> Location : {{ product.location }}</span>
+                                  
+									</section>
+									<div class="clearfix"></div>
+									</li> 
+								</a>
+                         {% endfor %}
+
+							</ul>
+						</div>
+							</div>
+						</div>
+
+                
+					  </div>
+					</div>
+				</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>	
+	</div>
+	<!-- // Products -->
+
+{% endblock body %}

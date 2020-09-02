@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+        <style>
+
+        </style>
+    </head>
+    <body>
+      <div style="margin-top: 300px;">
+       
+        <form action='.' method="POST">
+            {% csrf_token %}
+            <center>
+            <h1> Do you want to Delete {{object.name}} ? </h1>
+            <input type="submit" value="Yes" class="btn btn-success" style="width:75px;"/>
+
+            <a href="/">
+            <input type="button" value="Cancel" class="btn btn-danger"/>
+            </a>
+      
+        </center>
+        </form>
+    </div>
+    </body>
+</html>
